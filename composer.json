@@ -1,0 +1,27 @@
+{
+  "name": "martink/visible-stacks-cli",
+  "description": "📚 Count visible book stacks in a matrix (CLI tool)",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "VisibleStacks\\": "src/"
+    }
+  },
+  "bin": [
+    "bin/visible-stacks"
+  ],
+  "require": {
+    "php": "^8.0",
+    "illuminate/console": "^10.0",
+    "illuminate/container": "^10.0",
+    "illuminate/events": "^10.0",
+    "symfony/console": "^6.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0"
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
+}
