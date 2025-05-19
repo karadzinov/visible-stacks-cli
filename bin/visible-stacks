@@ -1,17 +1,29 @@
 #!/usr/bin/env php
 <?php
+
 require __DIR__ . '/../vendor/autoload.php';
 
-use Illuminate\Container\Container;
-use Illuminate\Events\Dispatcher;
-use Illuminate\Console\Application;
+use Symfony\Component\Console\Application;
 use VisibleStacks\Commands\VisibleStacksCommand;
+use Illuminate\Container\Container;
 
-$container = new Container();
-$events = new Dispatcher($container);
+class MyContainer extends Container
+{
+    public function runningUnitTests()
+    {
+        return false;
+    }
+}
 
-$application = new Application($container, $events, 'VisibleStacks CLI', '1.0');
-$application->add(new VisibleStacksCommand());
-$application->setDefaultCommand('visible:stacks', true);
+$container = new MyContainer();
 
-$application->run();
+$app = new Application('Visible Stacks CLI', '1.0.0');
+
+$command = new VisibleStacksCommand();
+
+$command->setLaravel($container);
+
+$app->add($command);
+
+$app->run();
+
